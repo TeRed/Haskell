@@ -6,7 +6,7 @@ data Osoba = Osoba
     { name      :: String
     , surname   :: String
     , pesel     :: String
-    } deriving(Show)
+    }
 
 class EqualPesel a where
     ep :: a -> a -> Bool
@@ -72,28 +72,22 @@ nsum :: Num a => Tree a -> a
 nsum Empty = 0
 nsum (Node x lt rt) = x + (nsum lt) + (nsum rt)
 
-delete :: Ord a => Tree a -> a -> Tree a
-delete Empty el = Empty
-delete (Node x lt rt) el
-    | x == el = True
-    | el < x = search lt el
-    | otherwise = search rt el
+remove :: (Ord a) => Tree a -> a -> Tree a
+remove Empty _ = Empty
+remove (Node x lt rt) el
+    | el < x = Node x (remove lt el) rt
+    | el > x = Node x lt (remove rt el)
+    | lt == Empty = rt
+    | rt == Empty = lt
+    | otherwise = Node (maxElement lt) (remove lt (maxElement lt)) rt
 
--- delete :: (Ord a) => Tree a -> a -> Tree a
--- delete Empty _ = Empty
--- delete (Node x lt rt) el  
---     | el == x = deleteX (Node rt x lt)
---     | el < x = Node (delete lt el) x t2
---     | otherwise = Node lt x (delete rt el)
-
--- deleteX :: (Ord a) => Tree a -> Tree a 
--- deleteX (Node Empty x rt) = rt
--- deleteX (Node lt x Empty) = lt
--- deleteX (Node lt x rt) = (Node t1 v2 t2)
-
+-- Used by 'remove' function
+maxElement :: (Ord a) => Tree a -> a
+maxElement (Node x lt rt)
+    | rt /= Empty = maxElement rt
+    | otherwise = x
 
 -- Test data
 myTree :: Tree Int
--- myTree = Node 1 (Node 2 Empty (Node 3 Empty Empty)) (Node 4 Empty Empty)
 myTree = Node 3 (Node 1 Empty (Node 2 Empty Empty)) (Node 4 Empty Empty)
 myTree2 = Empty
