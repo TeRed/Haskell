@@ -72,7 +72,7 @@ nsum :: Num a => Tree a -> a
 nsum Empty = 0
 nsum (Node x lt rt) = x + (nsum lt) + (nsum rt)
 
-remove :: (Ord a) => Tree a -> a -> Tree a
+remove :: Ord a => Tree a -> a -> Tree a
 remove Empty _ = Empty
 remove (Node x lt rt) el
     | el < x = Node x (remove lt el) rt
@@ -82,7 +82,7 @@ remove (Node x lt rt) el
     | otherwise = Node (maxElement lt) (remove lt (maxElement lt)) rt
 
 -- Used by 'remove' function
-maxElement :: (Ord a) => Tree a -> a
+maxElement :: Ord a => Tree a -> a
 maxElement (Node x lt rt)
     | rt /= Empty = maxElement rt
     | otherwise = x
