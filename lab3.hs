@@ -1,29 +1,42 @@
+-- Ex 1
+
 mojeLiczby = [f x | x <- lista, p x]
              where f = \a -> 2 * a          -- f mnoży liczbę razy 2
                    lista = [1..10]          -- lista początkowa
                    p = \b -> b `mod` 2 == 0 -- p wybiera liczby parzyste
  
-mojeLiczby' = map f $ filter p lista -- map f (filter p lista)
+mojeLiczby' = map f $ filter p lista
              where f = \a -> 2 * a
                    lista = [1..10]
                    p = \b -> b `mod` 2 == 0
 
-reverse' :: String -> String
+-- Ex 2
 
-reverse' str = foldl (\a b -> [b] ++ a) "" str
-reverse2' str = foldr (\a b -> b ++ [a]) [] str
+generatorOperator :: (lewa -> prawa -> wynik) -> lewa -> (prawa -> wynik)
+
+generatorOperator o l = o l
+
+-- Ex 3                   
+
+myReverse :: String -> String
+myReverse' :: String -> String
+
+myReverse str = foldl (\a b -> [b] ++ a) "" str
+myReverse' str = foldr (\a b -> b ++ [a]) [] str
+
+-- Ex 4
 
 policzISumuj :: (Int -> Int) -> Int -> Int -> Int
 
 policzISumuj f a b = sum $ map f [a..b]
 
+-- Ex 5
+
 pierwsze :: [Int] -> [Int]
 
-pierwsze a = filter (\a -> length [x | x <- [1..a], (a `mod` x) == 0] == 2) a
+pierwsze x = filter (\a -> length [z | z <- [1..a], (a `mod` z) == 0] == 2) x
 
-generatorOperator :: (lewa -> prawa -> wynik) -> lewa -> (prawa -> wynik)
-
-generatorOperator o l = o l
+-- Ex 6
 
 conajmniejn' :: [Int] -> Int -> [Int]
 

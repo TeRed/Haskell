@@ -1,7 +1,22 @@
 {-# LANGUAGE FlexibleInstances #-}
 import Data.Maybe
+import Data.Char
+
+-- Exercise 1
+
+class Intable a where
+    toInt :: a -> Int
+
+addDigit num dig = 10 * num + (digitToInt dig)
+
+instance Intable [Char] where
+    toInt x = foldl addDigit 0 x
+
+mySuperAdd :: (Intable a) => a -> a -> Int
+mySuperAdd x y = toInt x + toInt y
 
 -- Exercise 2
+
 data Osoba = Osoba
     { name      :: String
     , surname   :: String
@@ -21,6 +36,7 @@ instance GreaterSurname Osoba where
     gs x y = (surname x) > (surname y)
 
 -- Exercise 3
+
 createMonad :: [Osoba] -> Maybe Osoba
 createMonad [] = Nothing
 createMonad list = Just (head list)
@@ -35,7 +51,8 @@ zenon = Osoba "Zenon" "Adamczyk" "111111111"
 adamczyk = Osoba "Zenon" "Adamczyk" "222222222"
 peopleList = [szymon, zenon]
 
---Exercise 4
+-- Exercise 4
+
 data Tree a = Empty | Node a (Tree a) (Tree a) deriving (Eq, Ord, Show)
 
 insert :: Ord a => Tree a -> a -> Tree a
