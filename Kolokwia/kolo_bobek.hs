@@ -13,6 +13,9 @@ instance Eq Student where
     a == b = (name a) == (name b) && (age a) == (age b)
     a /= b = (name a) /= (name b) || (age a) /= (age b)
 
+instance Show Student where
+    show s = (name s) ++ " is currently " ++ (show $ age s) ++ " years old."
+
 -- Test data
 
 szymon = Student "Szymon" 33
@@ -59,4 +62,4 @@ testXdata a = M a == P a -- Wywołanie \"testXdata "a"\" zwraca wartość False 
 -- Wszysto co widzę wskazuje na to, ze jest
 
 -- Przyklad gdzie nie ma Eq i co sie stanie gdy chcemy zrobic show
--- Chyba nic? Nie wiem co ma Eq do funckji show
+-- Nie wiem co ma Eq do funkcji show
