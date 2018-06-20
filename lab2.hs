@@ -28,10 +28,9 @@ zip' a b = [(x,y) | x <- a | y <- b]
 
 zip'' :: [a] -> [b] -> [(a, b)]
 -- zip'' x y   |   length x == 0 || length y == 0 = []
-zip'' [] [] = []
-zip'' x [] = []
-zip'' [] x = []
-zip'' (x:xs) (y:ys) = [(x,y)] ++ (zip'' xs ys)
+zip'' _ [] = []
+zip'' [] _ = []
+zip'' (x:xs) (y:ys) = (x,y) : (zip'' xs ys)
 
 -- Ex 3
 
@@ -45,9 +44,10 @@ bakteria n = (s, f * 2 + s)
 
 -- Ex 4
 
-cyf :: Int -> Int
-cyf x   | x < 10 = x
-        | x >= 10 = cyf ((x `mod` 10) + cyf (x `div` 10))
+supercyfra :: Int -> Int
+supercyfra x
+        | x < 10 = x
+        | x >= 10 = supercyfra ((x `mod` 10) + supercyfra (x `div` 10))
 
 -- Ex 5
 
