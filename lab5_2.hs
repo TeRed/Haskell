@@ -1,9 +1,9 @@
 main :: IO ()
 
-main = do   
+main = do
     line <- getLine
-    if null line  
-        then return ()  
-        else do  
-            putStrLn $ reverse line 
-            main 
+    if null line
+        then return ()
+        else do
+            putStrLn $ reverse line
+            main
