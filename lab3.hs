@@ -40,5 +40,4 @@ pierwsze x = filter (\a -> length [z | z <- [1..a], (a `mod` z) == 0] == 2) x
 
 conajmniejn' :: [Int] -> Int -> [Int]
 
--- Nie wiem jak zrobić dobrze bez uyciu 'nub'
-conajmniejn' t i = [x | x <- [(minimum t)..(maximum t)], (length $ filter (\a -> a == x) t) >= i]
+conajmniejn' t i = [x | x <- [(minimum t)..(maximum t)], (length $ filter (x==) t) >= i]

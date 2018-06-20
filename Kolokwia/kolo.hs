@@ -1,4 +1,5 @@
 {-# LANGUAGE FlexibleInstances #-}
+import Test.HUnit
 
 -- IMIĘ I NAZWISKO: _________________
 
@@ -139,3 +140,7 @@ mojaMapa f lista = foldr (\arg acc -> f arg : acc) [] lista
 -- zaczerpniętym z opisu zadania, drugi test wymyśl samodzielnie.
 -- Zdefiniuj również funkcję uruchomTesty, która uruchamia zestaw wszystkich
 -- przygotowanych przez ciebie testów.
+
+testsList = TestList [  "nieparzyste" ~: [2, 6, 32] ~=? nieparzyste [2, 5, 6, 13, 32],
+                        "wspolrzedne" ~: [(0,0), (0,1), (1,0), (1,1)] ~=? wspolrzedne 1 1
+                    ]
